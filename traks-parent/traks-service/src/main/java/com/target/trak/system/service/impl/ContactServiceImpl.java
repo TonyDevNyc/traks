@@ -8,18 +8,18 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.target.trak.system.dto.common.TargetTrakErrorTypeEnum;
+import com.target.trak.system.dto.common.TargetTrakRequestTypeEnum;
+import com.target.trak.system.dto.common.TargetTrakValidationError;
+import com.target.trak.system.dto.contact.ContactApiRequest;
+import com.target.trak.system.dto.contact.ContactApiResponse;
+import com.target.trak.system.dto.contact.ContactDto;
 import com.target.trak.system.entity.Contact;
 import com.target.trak.system.entity.criteria.ContactSearchCriteria;
 import com.target.trak.system.persistence.ContactDao;
 import com.target.trak.system.service.BaseTargetTrakService;
 import com.target.trak.system.service.ContactService;
-import com.target.trak.system.service.dto.common.TargetTrakErrorTypeEnum;
-import com.target.trak.system.service.dto.common.TargetTrakRequestTypeEnum;
-import com.target.trak.system.service.dto.contact.ContactApiRequest;
-import com.target.trak.system.service.dto.contact.ContactApiResponse;
-import com.target.trak.system.service.dto.contact.ContactDto;
-import com.target.trak.system.service.validations.TargetTrakValidationError;
-import com.target.trak.system.service.validations.TargetTrakValidator;
+import com.target.trak.system.validations.TargetTrakValidator;
 
 @Transactional(value = "dwTransactionManager", propagation = Propagation.NEVER)
 public class ContactServiceImpl extends BaseTargetTrakService implements ContactService {

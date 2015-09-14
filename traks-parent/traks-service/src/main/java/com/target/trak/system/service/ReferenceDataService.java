@@ -1,7 +1,7 @@
 package com.target.trak.system.service;
 
-import com.target.trak.system.service.dto.referencedata.ReferenceDataApiRequest;
-import com.target.trak.system.service.dto.referencedata.ReferenceDataApiResponse;
+import com.target.trak.system.dto.referencedata.ReferenceDataApiRequest;
+import com.target.trak.system.dto.referencedata.ReferenceDataApiResponse;
 import com.target.trak.system.service.exception.TargetTrakException;
 
 public interface ReferenceDataService {

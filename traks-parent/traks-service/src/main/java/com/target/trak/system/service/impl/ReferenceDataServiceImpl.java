@@ -8,20 +8,20 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.target.trak.system.dto.common.TargetTrakErrorTypeEnum;
+import com.target.trak.system.dto.common.TargetTrakRequestTypeEnum;
+import com.target.trak.system.dto.common.TargetTrakValidationError;
+import com.target.trak.system.dto.common.TextSearchCriteriaDto;
+import com.target.trak.system.dto.referencedata.ReferenceDataApiRequest;
+import com.target.trak.system.dto.referencedata.ReferenceDataApiResponse;
+import com.target.trak.system.dto.referencedata.ReferenceDataDto;
 import com.target.trak.system.entity.ReferenceData;
 import com.target.trak.system.entity.criteria.TextSearchCriteria;
 import com.target.trak.system.persistence.ReferenceDataDao;
 import com.target.trak.system.service.BaseTargetTrakService;
 import com.target.trak.system.service.ReferenceDataService;
-import com.target.trak.system.service.dto.common.TargetTrakErrorTypeEnum;
-import com.target.trak.system.service.dto.common.TargetTrakRequestTypeEnum;
-import com.target.trak.system.service.dto.common.TextSearchCriteriaDto;
-import com.target.trak.system.service.dto.referencedata.ReferenceDataApiRequest;
-import com.target.trak.system.service.dto.referencedata.ReferenceDataApiResponse;
-import com.target.trak.system.service.dto.referencedata.ReferenceDataDto;
 import com.target.trak.system.service.exception.TargetTrakException;
-import com.target.trak.system.service.validations.TargetTrakValidationError;
-import com.target.trak.system.service.validations.TargetTrakValidator;
+import com.target.trak.system.validations.TargetTrakValidator;
 
 @Transactional(value = "dwTransactionManager", propagation = Propagation.NEVER)
 public class ReferenceDataServiceImpl extends BaseTargetTrakService implements ReferenceDataService {

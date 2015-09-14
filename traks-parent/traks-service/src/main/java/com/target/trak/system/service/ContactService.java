@@ -1,7 +1,7 @@
 package com.target.trak.system.service;
 
-import com.target.trak.system.service.dto.contact.ContactApiRequest;
-import com.target.trak.system.service.dto.contact.ContactApiResponse;
+import com.target.trak.system.dto.contact.ContactApiRequest;
+import com.target.trak.system.dto.contact.ContactApiResponse;
 
 public interface ContactService {
 	

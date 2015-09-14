@@ -1,7 +1,7 @@
 package com.target.trak.system.service;
 
-import com.target.trak.system.service.dto.company.CompanyApiRequest;
-import com.target.trak.system.service.dto.company.CompanyApiResponse;
+import com.target.trak.system.dto.company.CompanyApiRequest;
+import com.target.trak.system.dto.company.CompanyApiResponse;
 
 public interface CompanyService {
 
