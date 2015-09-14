@@ -169,5 +169,10 @@
 			<artifactId>traks-batch</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>com.target.trak.system</groupId>
+			<artifactId>traks-dto</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 </project>

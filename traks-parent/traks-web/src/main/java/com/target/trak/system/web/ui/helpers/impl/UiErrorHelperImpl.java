@@ -7,7 +7,7 @@ import java.util.Locale;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.MessageSource;
 
-import com.target.trak.system.service.validations.TargetTrakValidationError;
+import com.target.trak.system.dto.common.TargetTrakValidationError;
 import com.target.trak.system.web.ui.UiValidationError;
 import com.target.trak.system.web.ui.helpers.UiErrorHelper;
 

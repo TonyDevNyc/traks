@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
-import com.target.trak.system.service.dto.common.TargetTrakApiResponse;
-import com.target.trak.system.service.dto.common.TargetTrakErrorTypeEnum;
+import com.target.trak.system.dto.common.TargetTrakApiResponse;
+import com.target.trak.system.dto.common.TargetTrakErrorTypeEnum;
+import com.target.trak.system.dto.common.TargetTrakValidationError;
 import com.target.trak.system.service.exception.TargetTrakException;
-import com.target.trak.system.service.validations.TargetTrakValidationError;
 import com.target.trak.system.web.ui.UiValidationError;
 import com.target.trak.system.web.ui.helpers.UiErrorHelper;
 
