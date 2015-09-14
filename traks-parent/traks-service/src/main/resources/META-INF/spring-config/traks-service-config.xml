@@ -14,80 +14,8 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd">
 
 	<import resource="classpath*:/META-INF/spring-config/traks-persistence-config.xml" />
-	
-	<!-- Validation Beans -->
-	<util:properties id="dwValidationProps" location="classpath:/properties/dw-validation-codes.properties" />
-	<util:properties id="validationProps" location="classpath:/properties/security-validation-codes.properties" />
-	<util:properties id="genericValidationProps" location="classpath:/properties/generic-validation-codes.properties" />
-	
-	<bean id="emailRules" class="com.target.trak.system.service.validations.rules.impl.EmailRulesImpl">
-		<property name="genericValidationProps" ref="genericValidationProps" />
-		<property name="userDetailsDao" ref="userDetailsDao" />
-	</bean>
-
-	<bean id="firstNameRules" class="com.target.trak.system.service.validations.rules.impl.FirstNameRulesImpl">
-		<property name="genericValidationProps" ref="genericValidationProps" />
-	</bean>
-	
-	<bean id="lastNameRules" class="com.target.trak.system.service.validations.rules.impl.LastNameRulesImpl">
-		<property name="genericValidationProps" ref="genericValidationProps" />
-	</bean>
-	
-	<bean id="passwordRules" class="com.target.trak.system.service.validations.rules.impl.PasswordRulesImpl">
-		<property name="validationProps" ref="validationProps" />
-	</bean>
-	
-	<bean id="phoneNumberRules" class="com.target.trak.system.service.validations.rules.impl.PhoneNumberRulesImpl">
-		<property name="genericValidationProps" ref="genericValidationProps" />
-	</bean>
-	
-	<bean id="referenceDataRules" class="com.target.trak.system.service.validations.rules.impl.ReferenceDataRulesImpl">
-		<property name="validationProps" ref="dwValidationProps" />
-		<property name="referenceDataDao" ref="referenceDataDao" />
-	</bean>
-	
-	<bean id="usernameRules" class="com.target.trak.system.service.validations.rules.impl.UsernameRulesImpl">
-		<property name="validationProps" ref="validationProps" />
-		<property name="userDetailsDao" ref="userDetailsDao" />
-	</bean>
-
-	<bean id="addressRules" class="com.target.trak.system.service.validations.rules.impl.AddressRulesImpl">
-		<property name="validationProps" ref="dwValidationProps" />
-	</bean>
-	
-	<bean id="companyRules" class="com.target.trak.system.service.validations.rules.impl.CompanyRulesImpl">
-		<property name="validationProps" ref="dwValidationProps" />
-	</bean>
-	
-	<bean id="contactRules" class="com.target.trak.system.service.validations.rules.impl.ContactRulesImpl">
-		<property name="validationProps" ref="dwValidationProps" />
-	</bean>
-	
-	<bean id="userRegistrationValidator" class="com.target.trak.system.service.validations.impl.UserRegistrationValidatorImpl">
-		<property name="usernameRules" ref="usernameRules" />
-		<property name="passwordRules" ref="passwordRules" />
-		<property name="firstNameRules" ref="firstNameRules" />
-		<property name="lastNameRules" ref="lastNameRules" />
-		<property name="phoneNumberRules" ref="phoneNumberRules" />
-		<property name="emailRules" ref="emailRules" />
-	</bean>
-
-	<bean id="referenceDataValidator" class="com.target.trak.system.service.validations.impl.ReferenceDataValidatorImpl">
-		<constructor-arg ref="referenceDataRules" />
-	</bean>
-	
-	<bean id="companyValidator" class="com.target.trak.system.service.validations.impl.CompanyValidatorImpl">
-		<property name="addressRules" ref="addressRules" />
-		<property name="companyRules" ref="companyRules" />
-	</bean>
-	
-	<bean id="contactValidator" class="com.target.trak.system.service.validations.impl.ContactValidatorImpl">
-		<property name="firstNameRules" ref="firstNameRules" />
-		<property name="lastNameRules" ref="lastNameRules" />
-		<property name="emailRules" ref="emailRules" />
-		<property name="telephoneNumberRules" ref="phoneNumberRules" />
-		<property name="contactRules" ref="contactRules" />
-	</bean>
+	<import resource="classpath*:/META-INF/spring-config/traks-dto-config.xml" />
+	<import resource="classpath*:/META-INF/spring-config/traks-validation-config.xml" />
 	
 	<!-- Service Beans -->
 	<bean id="dwTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -98,29 +26,6 @@
 	
 	<aop:aspectj-autoproxy/>
 	
-	<bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
-		<property name="converters">
-			<set>
-				<bean id="menuDtoConverter" class="com.target.trak.system.service.dto.security.MenuDtoConverter" />
-				
-				<!-- <bean id="userDtoToEntityConverter" class="com.target.trak.system.service.dto.converters.UserDtoToEntityConverter">
-					<property name="encoder" ref="encoder" />
-				</bean>
-				 -->
-				<bean id="userEntityToDtoConverter" class="com.target.trak.system.service.dto.security.UserEntityToDtoConverter" />
-				<bean id="roleEntityToDtoConverter" class="com.target.trak.system.service.dto.security.RoleEntityToDtoConverter" />
-				<bean id="referenceDataEntityToDtoConverter" class="com.target.trak.system.service.dto.referencedata.ReferenceDataEntityToDtoConverter" />
-				<bean id="referenceDataDtoToEntityConverter" class="com.target.trak.system.service.dto.referencedata.ReferenceDataDtoToEntityConverter" />
-				<bean id="companyDtoToEntityConverter" class="com.target.trak.system.service.dto.company.CompanyDtoToEntityConverter" />
-				<bean id="companyEntityToDtoConverter" class="com.target.trak.system.service.dto.company.CompanyEntityToDtoConverter" />
-				<bean id="companySearchCriteriaDtoToEntityConverter" class="com.target.trak.system.service.dto.company.CompanySearchCriteriaDtoToEntityConverter" />
-				<bean id="contactEntityToDtoConverter" class="com.target.trak.system.service.dto.contact.ContactEntityToDtoConverter" />
-				<bean id="contactDtoToEntityConverter" class="com.target.trak.system.service.dto.contact.ContactDtoToEntityConverter" />
-				<bean id="contactSearchCriteriaDtoToEntityConverter" class="com.target.trak.system.service.dto.contact.ContactSearchCriteriaDtoToEntityConverter" />
-			</set>
-		</property>
-	</bean>
-
 	<bean id="menuService" class="com.target.trak.system.service.impl.MenuServiceImpl">
 		<property name="menuDao" ref="menuDao" />
 		<property name="conversionService" ref="conversionService" />
