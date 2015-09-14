@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+
+
+	<bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+		<property name="converters">
+			<set>
+				<bean id="menuDtoConverter" class="com.target.trak.system.dto.security.MenuDtoConverter" />
+				<bean id="userEntityToDtoConverter" class="com.target.trak.system.dto.security.UserEntityToDtoConverter" />
+				<bean id="roleEntityToDtoConverter" class="com.target.trak.system.dto.security.RoleEntityToDtoConverter" />
+				<bean id="referenceDataEntityToDtoConverter" class="com.target.trak.system.dto.referencedata.ReferenceDataEntityToDtoConverter" />
+				<bean id="referenceDataDtoToEntityConverter" class="com.target.trak.system.dto.referencedata.ReferenceDataDtoToEntityConverter" />
+				<bean id="companyDtoToEntityConverter" class="com.target.trak.system.dto.company.CompanyDtoToEntityConverter" />
+				<bean id="companyEntityToDtoConverter" class="com.target.trak.system.dto.company.CompanyEntityToDtoConverter" />
+				<bean id="companySearchCriteriaDtoToEntityConverter" class="com.target.trak.system.dto.company.CompanySearchCriteriaDtoToEntityConverter" />
+				<bean id="contactEntityToDtoConverter" class="com.target.trak.system.dto.contact.ContactEntityToDtoConverter" />
+				<bean id="contactDtoToEntityConverter" class="com.target.trak.system.dto.contact.ContactDtoToEntityConverter" />
+				<bean id="contactSearchCriteriaDtoToEntityConverter" class="com.target.trak.system.dto.contact.ContactSearchCriteriaDtoToEntityConverter" />
+			</set>
+		</property>
+	</bean>
+
+</beans>
