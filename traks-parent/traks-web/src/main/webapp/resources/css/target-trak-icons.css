@@ -1,0 +1,108 @@
+.x-action-col-icon {
+    height: 16px;
+    width: 16px;
+    margin-right: 20px;
+}
+
+.icon-home {
+	width: 16px !important;
+    height: 16px !important;
+    background-image:url('/traks-web/resources/images/home-icon.png') !important;
+}
+
+.icon-user-profile {
+	width: 18px !important;
+    height: 18px !important;
+    background-image:url('/traks-web/resources/images/user-profile-icon.png') !important;
+}
+
+.icon-user-settings {
+	width: 16px !important;
+    height: 16px !important;
+    background-image:url('/traks-web/resources/images/user-settings-icon.png') !important;
+}
+
+.icon-search {
+	width: 16px !important;
+    height: 16px !important;
+    background-image:url('/traks-web/resources/images/search-icon.png') !important;
+}
+
+
+.icon-matter {
+	width: 16px !important;
+    height: 16px !important;
+    background-image:url('/traks-web/resources/images/matter-icon.png') !important;
+}
+
+.icon-create-matter {
+	width: 16px !important;
+    height: 16px !important;
+    background-image:url('/traks-web/resources/images/matter-create-icon.png') !important;
+}
+
+.icon-gen-matter-aff {
+	width: 16px !important;
+    height: 16px !important;
+    background-image:url('/traks-web/resources/images/matter-generate-affidavit-icon.png') !important;
+}
+
+.icon-tasks {
+	width: 16px !important;
+    height: 16px !important;
+    background-image:url('/traks-web/resources/images/task-icon.png') !important;
+}
+
+.icon-reports {
+	width: 16px !important;
+    height: 16px !important;
+    background-image:url('/traks-web/resources/images/report-icon.png') !important;
+}
+
+.icon-billing {
+	width: 16px !important;
+    height: 16px !important;
+    background-image:url('/traks-web/resources/images/billing-icon.png') !important;
+}
+
+.icon-ref-data {
+	width: 16px !important;
+    height: 16px !important;
+    background-image:url('/traks-web/resources/images/ref-data-icon.png') !important;
+}
+
+.icon-add-ref-data {
+	width: 16px !important;
+    height: 16px !important;
+    background-image:url('/traks-web/resources/images/add-refdata.png') !important;
+}
+
+.icon-contacts {
+	width: 16px !important;
+    height: 16px !important;
+    background-image:url('/traks-web/resources/images/contacts-icon.png') !important;
+}
+
+.icon-company {
+	width: 16px !important;
+    height: 16px !important;
+    background-image:url('/traks-web/resources/images/company-icon.png') !important;
+}
+
+.icon-contact {
+	width: 16px !important;
+    height: 16px !important;
+    background-image:url('/traks-web/resources/images/contact-icon.png') !important;
+}
+
+.icon-sec-admin {
+	width: 16px !important;
+    height: 16px !important;
+    background-image:url('/traks-web/resources/images/security-icon.png') !important;
+}
+
+.icon-logout {
+	width: 16px !important;
+    height: 16px !important;
+    background-image:url('/traks-web/resources/images/logout-icon-red.png') !important;
+}

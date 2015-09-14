@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd"> 
+
+<properties>
+	<entry key="selectUserByUsernameSql">
+	    <![CDATA[
+	      SELECT username, password, user_enabled, first_name, last_name, email, mobile_number, registration_date 
+		  FROM target_trak_sec.users 
+		  WHERE username = :username
+       ]]>
+	</entry>
+	
+	<entry key="insertUserSql">
+	    <![CDATA[
+	     INSERT INTO target_trak_sec.users (username, password, user_enabled, first_name, last_name, email, mobile_number, registration_date) 
+	     VALUES (:username, :password, :enabled, :firstName, :lastName, :email, :mobileNumber, :registrationDate)
+		  
+       ]]>
+	</entry>
+	
+	<entry key="selectUserByEmailSql">
+	    <![CDATA[
+	      SELECT username, password, user_enabled, first_name, last_name, email, mobile_number, registration_date 
+		  FROM target_trak_sec.users 
+		  WHERE email = :email
+       ]]>
+	</entry>
+	
+	<entry key="selectDistinctUsersSql">
+	    <![CDATA[
+	      SELECT username, password, user_enabled, first_name, last_name, email, mobile_number, registration_date 
+		  FROM target_trak_sec.users 
+		  ORDER BY last_name, first_name
+     	 ]]>
+	</entry>
+</properties>

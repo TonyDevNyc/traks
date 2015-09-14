@@ -1,0 +1,59 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+
+	<beans:bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+	
+	<beans:bean id="targetTrakAuthenticationProvider" class="com.target.trak.system.web.security.providers.TargetTrakAuthenticationProvider">
+		<beans:property name="userDetailsService" ref="targetTrakUserDetailsService" />
+		<beans:property name="encoder" ref="encoder" />
+	</beans:bean>
+
+	<beans:bean id="httpSessionSecurityContextRepository" class="org.springframework.security.web.context.HttpSessionSecurityContextRepository"/>
+ 
+	<beans:bean id="invalidSessionRedirectStrategy" class="com.target.trak.system.web.security.filters.InvalidSessionRedirectStrategy" />
+	
+	<beans:bean id="sessionManagementFilter" class="org.springframework.security.web.session.SessionManagementFilter">
+        <beans:constructor-arg name="securityContextRepository" ref="httpSessionSecurityContextRepository" />
+        <beans:property name="invalidSessionStrategy" ref="invalidSessionRedirectStrategy" />
+    </beans:bean>
+
+	<authentication-manager alias="authenticationManager">
+		<authentication-provider ref="targetTrakAuthenticationProvider" />
+	</authentication-manager>
+
+	<http pattern="/resources/**" security="none" />
+
+	<http use-expressions="true">
+		<session-management invalid-session-url="/login.htm?sessiontimeout=sessiontimeout">
+			<concurrency-control max-sessions="1" expired-url="/logout.htm"/>
+		</session-management>
+		
+		<custom-filter ref="sessionManagementFilter" before="SESSION_MANAGEMENT_FILTER" />
+		
+		<csrf />
+		<access-denied-handler error-page="/login.htm?accessdenied=invalid_access" />
+
+		<headers>
+			<cache-control />
+			<content-type-options />
+			<hsts />
+			<frame-options />
+			<xss-protection />
+		</headers>
+
+		<form-login login-page="/login.htm" default-target-url="/index.htm"
+			always-use-default-target="true" authentication-failure-url="/login.htm?invalidcreds=invalidcreds" />
+
+		<logout invalidate-session="true" logout-url="/logout.htm"
+			logout-success-url="/login.htm?logout=logout" delete-cookies="JSESSIONID" />
+
+	</http>
+
+</beans:beans>

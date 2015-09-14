@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beansProjectDescription>
+	<version>1</version>
+	<pluginVersion><![CDATA[3.6.4.201503051146-RELEASE]]></pluginVersion>
+	<configSuffixes>
+		<configSuffix><![CDATA[xml]]></configSuffix>
+	</configSuffixes>
+	<enableImports><![CDATA[false]]></enableImports>
+	<configs>
+		<config>src/test/resources/META-INF/spring/traks-batch-test-config.xml</config>
+		<config>src/main/resources/META-INF/batch/infrastructure/traks-batch-infrastructure-config.xml</config>
+		<config>src/main/resources/META-INF/batch/reference-data-import-job/traks-reference-data-import-config.xml</config>
+		<config>src/main/resources/META-INF/batch/traks-batch-context.xml</config>
+	</configs>
+	<autoconfigs>
+	</autoconfigs>
+	<configSets>
+	</configSets>
+</beansProjectDescription>
