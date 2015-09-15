@@ -12,15 +12,15 @@ import org.junit.Test;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import com.target.trak.system.dto.security.UserDto;
+import com.target.trak.system.dto.security.user.UserApiRequest;
+import com.target.trak.system.dto.security.user.UserApiResponse;
 import com.target.trak.system.entity.Privilege;
 import com.target.trak.system.entity.Role;
 import com.target.trak.system.entity.User;
 import com.target.trak.system.persistence.RolePrivilegesDao;
 import com.target.trak.system.persistence.UserDetailsDao;
 import com.target.trak.system.persistence.UserRoleDao;
-import com.target.trak.system.service.dto.security.UserDto;
-import com.target.trak.system.service.dto.security.user.UserApiRequest;
-import com.target.trak.system.service.dto.security.user.UserApiResponse;
 
 public class TargetTrakUserDetailsServiceImplTest {
 

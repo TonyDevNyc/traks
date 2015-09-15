@@ -1,6 +1,6 @@
 package com.target.trak.system.service.exception;
 
-import com.target.trak.system.service.dto.common.TargetTrakApiResponse;
+import com.target.trak.system.dto.common.TargetTrakApiResponse;
 
 public class TargetTrakException extends RuntimeException {
 

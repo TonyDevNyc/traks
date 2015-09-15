@@ -14,16 +14,16 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.BadSqlGrammarException;
 
+import com.target.trak.system.dto.common.TargetTrakValidationError;
+import com.target.trak.system.dto.contact.ContactApiRequest;
+import com.target.trak.system.dto.contact.ContactApiResponse;
+import com.target.trak.system.dto.contact.ContactDto;
+import com.target.trak.system.dto.contact.ContactSearchCriteriaDto;
 import com.target.trak.system.entity.Company;
 import com.target.trak.system.entity.Contact;
 import com.target.trak.system.entity.criteria.ContactSearchCriteria;
 import com.target.trak.system.persistence.ContactDao;
-import com.target.trak.system.service.dto.contact.ContactApiRequest;
-import com.target.trak.system.service.dto.contact.ContactApiResponse;
-import com.target.trak.system.service.dto.contact.ContactDto;
-import com.target.trak.system.service.dto.contact.ContactSearchCriteriaDto;
-import com.target.trak.system.service.validations.TargetTrakValidationError;
-import com.target.trak.system.service.validations.TargetTrakValidator;
+import com.target.trak.system.validations.TargetTrakValidator;
 
 public class ContactServiceImplTest {
 

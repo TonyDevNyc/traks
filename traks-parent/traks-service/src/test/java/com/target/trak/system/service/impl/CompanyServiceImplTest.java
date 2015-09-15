@@ -14,16 +14,16 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.BadSqlGrammarException;
 
+import com.target.trak.system.dto.common.TargetTrakValidationError;
+import com.target.trak.system.dto.company.CompanyApiRequest;
+import com.target.trak.system.dto.company.CompanyApiResponse;
+import com.target.trak.system.dto.company.CompanyDto;
+import com.target.trak.system.dto.company.CompanySearchCriteriaDto;
 import com.target.trak.system.entity.Company;
 import com.target.trak.system.entity.criteria.CompanySearchCriteria;
 import com.target.trak.system.persistence.CompanyDao;
-import com.target.trak.system.service.dto.company.CompanyApiRequest;
-import com.target.trak.system.service.dto.company.CompanyApiResponse;
-import com.target.trak.system.service.dto.company.CompanyDto;
-import com.target.trak.system.service.dto.company.CompanySearchCriteriaDto;
 import com.target.trak.system.service.exception.TargetTrakException;
-import com.target.trak.system.service.validations.TargetTrakValidationError;
-import com.target.trak.system.service.validations.TargetTrakValidator;
+import com.target.trak.system.validations.TargetTrakValidator;
 
 public class CompanyServiceImplTest {
 

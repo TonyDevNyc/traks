@@ -11,14 +11,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.core.convert.ConversionService;
 
+import com.target.trak.system.dto.common.TargetTrakValidationError;
+import com.target.trak.system.dto.security.UserDto;
+import com.target.trak.system.dto.security.registration.RegistrationApiRequest;
+import com.target.trak.system.dto.security.registration.RegistrationApiResponse;
 import com.target.trak.system.entity.User;
 import com.target.trak.system.persistence.UserDetailsDao;
-import com.target.trak.system.service.dto.security.UserDto;
-import com.target.trak.system.service.dto.security.registration.RegistrationApiRequest;
-import com.target.trak.system.service.dto.security.registration.RegistrationApiResponse;
 import com.target.trak.system.service.exception.TargetTrakException;
-import com.target.trak.system.service.validations.TargetTrakValidationError;
-import com.target.trak.system.service.validations.TargetTrakValidator;
+import com.target.trak.system.validations.TargetTrakValidator;
 
 public class RegistrationServiceImplTest {
 

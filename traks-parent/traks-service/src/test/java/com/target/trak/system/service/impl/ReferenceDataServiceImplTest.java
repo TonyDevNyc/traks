@@ -13,14 +13,14 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.dao.QueryTimeoutException;
 
+import com.target.trak.system.dto.common.TargetTrakValidationError;
+import com.target.trak.system.dto.referencedata.ReferenceDataApiRequest;
+import com.target.trak.system.dto.referencedata.ReferenceDataApiResponse;
+import com.target.trak.system.dto.referencedata.ReferenceDataDto;
 import com.target.trak.system.entity.ReferenceData;
 import com.target.trak.system.persistence.ReferenceDataDao;
-import com.target.trak.system.service.dto.referencedata.ReferenceDataApiRequest;
-import com.target.trak.system.service.dto.referencedata.ReferenceDataApiResponse;
-import com.target.trak.system.service.dto.referencedata.ReferenceDataDto;
 import com.target.trak.system.service.exception.TargetTrakException;
-import com.target.trak.system.service.validations.TargetTrakValidationError;
-import com.target.trak.system.service.validations.TargetTrakValidator;
+import com.target.trak.system.validations.TargetTrakValidator;
 
 public class ReferenceDataServiceImplTest {
 
@@ -58,7 +58,7 @@ public class ReferenceDataServiceImplTest {
 		Assert.fail("Reference Data Api Request is null, so test should of failed");
 	}
 
-	@Test(expected = TargetTrakException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void createReferenceDataForNullReferenceDataDto() {
 		final ReferenceDataApiRequest request = new ReferenceDataApiRequest();
 		mockery.checking(new org.jmock.Expectations() {
@@ -72,7 +72,7 @@ public class ReferenceDataServiceImplTest {
 		Assert.fail("Reference Data Api Request is null, so test should of failed");
 	}
 
-	@Test
+	@Test(expected=TargetTrakException.class)
 	public void createReferenceDataWithValidationErrors() {
 		final ReferenceDataApiRequest request = new ReferenceDataApiRequest();
 		mockery.checking(new org.jmock.Expectations() {
@@ -129,7 +129,7 @@ public class ReferenceDataServiceImplTest {
 		Assert.fail("Reference Data Api Request is null, so test should of failed");
 	}
 
-	@Test(expected = TargetTrakException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void deleteReferenceDataForNullReferenceDataDto() {
 		final ReferenceDataApiRequest request = new ReferenceDataApiRequest();
 		mockery.checking(new org.jmock.Expectations() {
@@ -341,7 +341,7 @@ public class ReferenceDataServiceImplTest {
 		Assert.assertTrue("Reference Data Api Response is successful", response.isSuccess());
 	}
 	
-	@Test
+	@Test(expected=TargetTrakException.class)
 	public void updateReferenceDataItemForValidationErrors() {
 		final ReferenceDataApiRequest request = new ReferenceDataApiRequest();
 		ReferenceDataDto dto = new ReferenceDataDto();
