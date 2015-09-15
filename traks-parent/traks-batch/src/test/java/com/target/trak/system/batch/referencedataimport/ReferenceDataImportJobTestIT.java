@@ -7,7 +7,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.batch.core.BatchStatus;
 import org.springframework.batch.core.Job;
+import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +19,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/META-INF/spring/traks-batch-test-config.xml" })
-public class ReferenceDataImportJobTest {
+public class ReferenceDataImportJobTestIT {
 
 	@Autowired
 	private JobLauncher jobLauncher;
@@ -34,18 +36,15 @@ public class ReferenceDataImportJobTest {
 	}
 
 	@Test
-	public void importReferenceData() throws Exception {
-		int initial = jdbcTemplate.queryForObject("select count(1) from target_trak_dw.reference_data", Integer.class);
+	public void importReferenceData_forSuccessfulExecution() throws Exception {
 		JobParametersBuilder builder = new JobParametersBuilder();
 		builder.addString("targetDirectory", "/Users/amarrajr/apps/");
 		builder.addString("targetFile", "2015_09_reference_data.csv");
 		builder.addString("userid", "tina");
 		builder.addDate("timestamp", new Timestamp(new Date().getTime()));
 
-		jobLauncher.run(job, builder.toJobParameters());
-
-		int referenceDataUploaded = 106;
-		int count = jdbcTemplate.queryForObject("select count(1) from target_trak_dw.reference_data", Integer.class);
-		Assert.assertEquals("Post import count is ", referenceDataUploaded, initial + count);
+		JobExecution jobExecution = jobLauncher.run(job, builder.toJobParameters());
+		BatchStatus status = jobExecution.getStatus();
+		Assert.assertEquals("Post import count is ", BatchStatus.COMPLETED, status);
 	}
 }
