@@ -30,10 +30,10 @@ public class ReferenceDataFileCleanupTask implements Tasklet {
 		}
 		
 		String fileName = targetDirectory + targetFile;
-		logger.error("Attempting to delete file: " + fileName);
+		logger.info("Attempting to delete file: " + fileName);
 		File file = new File(fileName);
 		file.delete();
-		logger.error("Successfully deleted file: " + fileName);
+		logger.info("Successfully deleted file: " + fileName);
 		return RepeatStatus.FINISHED;
 	}
 
