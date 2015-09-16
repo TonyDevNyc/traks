@@ -19,11 +19,12 @@
 				
 				<batch:chunk 
 						reader="referenceDataReader" 
-						processor="existingReferenceDataFilterProcessor" 
+						processor="compositeItemProcessor" 
 						writer="referenceDataWriter" 
-						commit-interval="25" skip-limit="50">
+						skip-limit="50" chunk-completion-policy="timeoutCompletionPolicy">
 					<batch:skippable-exception-classes>
-						<batch:include class="org.springframework.batch.item.file.FlatFileParseException"/>
+						<batch:include class="org.springframework.batch.item.file.FlatFileParseException" />
+						<batch:include class="org.springframework.batch.item.validator.ValidationException" />
 						<batch:exclude class="java.io.FileNotFoundException"/>
 					</batch:skippable-exception-classes>
 				</batch:chunk>
@@ -52,6 +53,24 @@
   		</property>
 	</bean>
 	
+	<bean id="compositeItemProcessor" class="org.springframework.batch.item.support.CompositeItemProcessor">
+  		<property name="delegates">
+		    <list>
+		      <ref local="existingReferenceDataFilterProcessor"/>
+		      <ref local="referenceDataValidatingItemProcessor"/>
+		    </list>
+  		</property>
+	</bean>
+	
+ 	<bean id="referenceDataValidatingItemProcessor" class="org.springframework.batch.item.validator.ValidatingItemProcessor">
+ 		<property name="filter" value="false" />
+ 		<property name="validator">
+			<bean  class="com.target.trak.system.batch.referencedataimport.validators.ReferenceDataValidator">
+				<property name="referenceDataRules" ref="referenceDataRules" />
+			</bean>
+ 		</property>
+	</bean>
+ 	
 	<bean id="existingReferenceDataFilterProcessor" class="com.target.trak.system.batch.referencedataimport.processors.ExistingReferenceDataFilterItemProcessor">
 		<constructor-arg ref="dataSource" />
 		<property name="queryProperties" ref="queryProperties" />
@@ -66,4 +85,8 @@
 	
 	<bean id="cleanupTask" class="com.target.trak.system.batch.referencedataimport.tasklets.ReferenceDataFileCleanupTask" />
 	
+	<bean id="timeoutCompletionPolicy" class="org.springframework.batch.repeat.policy.TimeoutTerminationPolicy"> 
+		<constructor-arg value="240"/>
+	</bean>
+
 </beans>
