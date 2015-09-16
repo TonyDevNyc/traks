@@ -10,4 +10,5 @@
 
 	<import resource="classpath:/META-INF/batch/infrastructure/traks-batch-infrastructure-config.xml"/>
 	<import resource="classpath:/META-INF/batch/reference-data-import-job/traks-reference-data-import-config.xml"/>
+	<import resource="classpath:/META-INF/spring-config/traks-validation-config.xml"/>
 </beans>
