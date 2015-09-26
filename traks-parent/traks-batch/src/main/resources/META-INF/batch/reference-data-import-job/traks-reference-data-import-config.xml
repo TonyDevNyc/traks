@@ -13,7 +13,7 @@
 
 
 	<batch:job id="importReferenceDataJob">
-		<batch:step id="readWriteReferenceData" next="cleanup">
+		<batch:step id="readValidateWriteReferenceData" next="emailReport">
 			<batch:tasklet transaction-manager="transactionManager">
 				<batch:transaction-attributes isolation="READ_COMMITTED" propagation="REQUIRED" timeout="30"/>
 				
@@ -28,14 +28,24 @@
 						<batch:exclude class="java.io.FileNotFoundException"/>
 					</batch:skippable-exception-classes>
 				</batch:chunk>
-				
+				<batch:listeners>
+					<batch:listener ref="skipListener" />
+				</batch:listeners>
 			</batch:tasklet>
+		</batch:step>
+		<batch:step id="emailReport" next="cleanup">
+			<batch:tasklet ref="emailReportTasklet" />
 		</batch:step>
 		<batch:step id="cleanup">
 			<batch:tasklet ref="cleanupTask" />
 		</batch:step>
 	</batch:job>
 
+	<bean id="skipListener" class="com.target.trak.system.batch.referencedataimport.listeners.ReferenceDataSkipJdbcListener" scope="step"> 
+		<constructor-arg ref="dataSource" />
+		<property name="queryProps" ref="queryProperties" />
+	</bean>
+	
 	<bean id="referenceDataReader" class="org.springframework.batch.item.file.FlatFileItemReader" scope="step">
 		<property name="resource" value="file:#{jobParameters['targetDirectory']+jobParameters['targetFile']}" />
 		<property name="linesToSkip" value="1" />
@@ -62,7 +72,7 @@
   		</property>
 	</bean>
 	
- 	<bean id="referenceDataValidatingItemProcessor" class="org.springframework.batch.item.validator.ValidatingItemProcessor">
+ 	<bean id="referenceDataValidatingItemProcessor" class="org.springframework.batch.item.validator.ValidatingItemProcessor" scope="step">
  		<property name="filter" value="false" />
  		<property name="validator">
 			<bean  class="com.target.trak.system.batch.referencedataimport.validators.ReferenceDataValidator">
@@ -71,7 +81,8 @@
  		</property>
 	</bean>
  	
-	<bean id="existingReferenceDataFilterProcessor" class="com.target.trak.system.batch.referencedataimport.processors.ExistingReferenceDataFilterItemProcessor">
+	<bean id="existingReferenceDataFilterProcessor" 
+		class="com.target.trak.system.batch.referencedataimport.processors.ExistingReferenceDataFilterItemProcessor" scope="step">
 		<constructor-arg ref="dataSource" />
 		<property name="queryProperties" ref="queryProperties" />
 	</bean>
@@ -82,6 +93,16 @@
 	</bean>
 
 	<util:properties id="queryProperties" location="classpath:/META-INF/batch/reference-data-import-job/queries.xml" />
+	
+	<bean id="emailReportTasklet" class="com.target.trak.system.batch.referencedataimport.tasklets.EmailReferenceDataReportTasklet">
+		<property name="emailService" ref="emailService" />
+		<property name="batchErrorDao" ref="batchErrorDao" />
+	</bean>
+	
+	<bean id="batchErrorDao" class="com.target.trak.system.batch.common.impl.BatchErrorDaoImpl">
+		<constructor-arg ref="dataSource" />
+		<property name="queryProperties" ref="queryProperties" />
+	</bean>
 	
 	<bean id="cleanupTask" class="com.target.trak.system.batch.referencedataimport.tasklets.ReferenceDataFileCleanupTask" />
 	

@@ -21,4 +21,26 @@
        ]]>
 	</entry>
 	
+	<entry key="insertRecordsWithErrorsSql">
+	    <![CDATA[
+	     	INSERT INTO target_trak_dw.BATCH_JOB_RECORD_ERRORS (JOB_EXECUTION_ID, LINE_DATA, ERROR_REASON) 
+	     	VALUES (:jobExecutionId, :lineData, :errorReason)
+       ]]>
+	</entry>
+	
+	<entry key="getRecordsWithErrorsCountSql">
+	    <![CDATA[
+	     	SELECT COUNT(1) FROM target_trak_dw.BATCH_JOB_RECORD_ERRORS WHERE JOB_EXECUTION_ID = :jobExecutionId
+       ]]>
+	</entry>
+	
+	<entry key="getRecordsWithErrorsSql">
+	    <![CDATA[
+	     	SELECT ID, JOB_EXECUTION_ID, LINE_DATA, ERROR_REASON 
+	     	FROM target_trak_dw.BATCH_JOB_RECORD_ERRORS 
+	     	WHERE JOB_EXECUTION_ID = :jobExecutionId
+       ]]>
+	</entry>
+	
+	
 </properties>
