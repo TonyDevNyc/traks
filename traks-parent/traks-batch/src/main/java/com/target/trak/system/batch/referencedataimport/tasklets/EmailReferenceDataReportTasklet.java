@@ -11,11 +11,9 @@ import org.springframework.batch.repeat.RepeatStatus;
 
 import com.target.trak.system.batch.common.BatchError;
 import com.target.trak.system.batch.common.BatchErrorDao;
-import com.target.trak.system.service.EmailService;
 
 public class EmailReferenceDataReportTasklet implements Tasklet {
 
-	private EmailService emailService;
 	private BatchErrorDao batchErrorDao;
 	
 	@Override
@@ -30,7 +28,7 @@ public class EmailReferenceDataReportTasklet implements Tasklet {
 		} 
 		
 		String message = buildEmailMessage(jobExecution, count, batchErrors);
-		emailService.sendEmailMessage(getEmailRecipients(), "Reference Data Import Job Report", message);
+		//emailService.sendEmailMessage(getEmailRecipients(), "Reference Data Import Job Report", message);
 		return RepeatStatus.FINISHED;
 	}
 	
@@ -57,10 +55,6 @@ public class EmailReferenceDataReportTasklet implements Tasklet {
 		return builder.toString();
 	}
 	
-	public void setEmailService(EmailService emailService) {
-		this.emailService = emailService;
-	}
-
 	public void setBatchErrorDao(BatchErrorDao batchErrorDao) {
 		this.batchErrorDao = batchErrorDao;
 	}
