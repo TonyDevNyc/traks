@@ -94,6 +94,11 @@
 			<version>3.4</version>
 		</dependency>
 		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>
+		<dependency>
 			<groupId>com.target.trak.system</groupId>
 			<artifactId>traks-persistence</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
