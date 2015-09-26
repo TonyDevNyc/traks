@@ -6,7 +6,7 @@
 	xmlns:lang="http://www.springframework.org/schema/lang"
 	xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
-		http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-3.0.xsd
+		http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
 		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.2.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd">
@@ -95,7 +95,7 @@
 	<util:properties id="queryProperties" location="classpath:/META-INF/batch/reference-data-import-job/queries.xml" />
 	
 	<bean id="emailReportTasklet" class="com.target.trak.system.batch.referencedataimport.tasklets.EmailReferenceDataReportTasklet">
-		<property name="emailService" ref="emailService" />
+		<!-- <property name="emailService" ref="emailService" /> -->
 		<property name="batchErrorDao" ref="batchErrorDao" />
 	</bean>
 	
