@@ -41,7 +41,7 @@ public class AsyncJobLauncherServiceImpl implements AsyncJobLauncherService {
 			job = mapJobRegistry.getJob(request.getJobName());
 			jobExecution = asyncJobLauncher.run(job, jobParameters);
 			response.setSuccess(Boolean.TRUE);
-			response.setMessage("Job named: named: [" + request.getJobName() +"(Execution ID: "+jobExecution.getJobId()+")" +"] has been started successfully.<br/>Please check the batch admin screen for status.");
+			response.setMessage("Job named: named: [" + request.getJobName() +"(Execution ID: "+jobExecution.getId()+")" +"] has been started successfully.<br/>Please check the batch admin screen for status.");
 		} catch (NoSuchJobException e) {
 			String errorMessage = "Error finding job named: [" + request.getJobName() +"]";
 			logger.error(errorMessage, e);
